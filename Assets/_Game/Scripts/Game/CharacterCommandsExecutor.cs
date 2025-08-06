@@ -43,8 +43,9 @@ public class CharacterCommandsExecutor : MonoBehaviour
                     yield return Wait();
                     break; 
                     
-                case CommandType.Function1:
-                    yield return ExecuteCommands(_characterManager.CommandList.Function1);
+                case CommandType.Function:
+                    yield return ExecuteCommands(_characterManager.CommandList.Function);
+                    break;
                     
             }
 
@@ -56,33 +57,28 @@ public class CharacterCommandsExecutor : MonoBehaviour
 
     private IEnumerator WalkFoward()
     {
-        if (_characterManager.characterStepsCount == 0)
+        if (_characterManager.getCharacterStepsCount() == 0)
         {
             Quaternion playerRotation = Quaternion.Euler(0, this.gameObject.transform.eulerAngles.y, 0);
 
             Vector3 playerForward = playerRotation * Vector3.forward;
 
             Vector3 playerPosition = this.gameObject.transform.position;
+
             playerPosition.y += .05f;
 
             RaycastHit hit;
             
             if (Physics.Raycast(playerPosition, playerForward, out hit, .1f) && hit.transform.gameObject.layer == 6)
             {
-                log.Add($"Passo {idCurrentCommand} - Não consegui andar");
-
-                _characterManager.CharacterStepsCount = 0;
-
+                _characterManager.ResetStepsCount();
                 CancelInvoke("Walk");
                 yield return null;
             }
 
             if (!Physics.Raycast(playerPosition + playerForward / 10, playerRotation * -Vector3.up, out hit, .1f))
             {
-                log.Add($"Passo {idCurrentCommand} - Não consegui andar");
-
-                _characterManager.CharacterStepsCount = 0;
-
+                _characterManager.ResetStepsCount();
                 CancelInvoke("Walk");
                 yield return null;
             }
@@ -92,10 +88,9 @@ public class CharacterCommandsExecutor : MonoBehaviour
 
         this.gameObject.transform.Translate(Vector3.forward / 1000, Space.Self);
 
-        if (++_characterManager.CharacterStepsCount == 100)
+        if (_characterManager.getCharacterStepsCount()+1 == 100)
         {
-            _characterManager.CharacterStepsCount = 0;
-
+            _characterManager.ResetStepsCount();
             this.gameObject.GetComponent<Animator>().SetBool("Walk", false);
             CancelInvoke("Walk");
         }
@@ -120,33 +115,39 @@ public class CharacterCommandsExecutor : MonoBehaviour
     private IEnumerator Interact()
     {
         Vector3 playerForward = Quaternion.Euler(0, this.gameObject.transform.eulerAngles.y, 0) * Vector3.forward;
-
         Vector3 playerPosition = this.gameObject.transform.position;
         playerPosition.y += .05f;
-
         RaycastHit hit;
-        if (!Physics.Raycast(playerPosition, playerForward, out hit, .1f))
+
+        if (!Physics.Raycast(playerPosition, playerForward, out hit, .1f)) {
             yield return null;
+        }
 
         if (hit.transform.tag == "Lever")
         {
             GameObject lever = hit.transform.gameObject;
             lever.GetComponentInChildren<Animator>().enabled = true;
-
             GameObject relatedDoor = GameObject.Find($"Door{lever.name[5]}");
             relatedDoor.GetComponentInChildren<Animator>().enabled = true;
         }
         else if (hit.transform.tag == "Door")
         {
-            if (!_characterManager.haveKey)
+            if (!_characterManager.getHaveKey())
             {
-                log.Add($"Passo {idCurrentCommand} - Não peguei a chave");
-
+                Debug.Log("You need a key to open this door.");
+                yield return null;
+            }
+            {
                 yield return null;
             }
 
             hit.transform.parent.GetComponentInChildren<Animator>().enabled = true;
         }
+    }
+
+    private IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1f);
     }
 
 }

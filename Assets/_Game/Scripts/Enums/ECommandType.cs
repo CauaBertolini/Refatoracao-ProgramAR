@@ -7,6 +7,6 @@ public enum CommandType
     RotateRight,
     Interact,
     Wait,
-    Function1
+    Function
 }
 

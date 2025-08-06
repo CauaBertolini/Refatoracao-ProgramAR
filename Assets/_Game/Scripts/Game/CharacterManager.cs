@@ -5,8 +5,8 @@ public class CharacterManager : MonoBehaviour
     
     private bool _isDead;
     private bool _hasFinishedCommandExecution;
-    public int CharacterStepsCount;
-    public bool _haveKey {get; private set;}
+    private int characterStepsCount;
+    private bool _haveKey;
 
     [SerializeField]
     private int _characterID;
@@ -47,13 +47,28 @@ public class CharacterManager : MonoBehaviour
         CommandList.MainSequence.Add(command);
     }
 
-    public void RemoveCommandFromList()
+    public void RemoveCommandFromList(CommandType command)
     {
-
+        CommandList.MainSequence.RemoveAt(CommandList.MainSequence.IndexOf(command));
     }
 
-    public void CharacterStepsCounter()
+    public int getCharacterStepsCount()
     {
-        CharacterStepsCount++;
+        return characterStepsCount;
+    }
+
+    public void countStep()
+    {
+        characterStepsCount++;
+    }
+
+    public void ResetStepsCount()
+    {
+        characterStepsCount = 0;
+    }
+
+    public bool getHaveKey()
+    {
+        return _haveKey;
     }
 }

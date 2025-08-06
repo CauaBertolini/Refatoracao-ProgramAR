@@ -6,10 +6,9 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ScenePlacementManager : MonoBehaviour
 {
-    public GameControll gameControll;
+    private GameManager _gameManager;
 
     public GameObject placementIndicator;
-    public GameObject tutorial;
 
     private ARRaycastManager arRaycast;
 
@@ -20,11 +19,7 @@ public class ScenePlacementManager : MonoBehaviour
 
     void Start()
     {
-        switch (GlobalControll.levelType)
-        {
-            case 0: placementIndicator = Instantiate(Resources.Load<GameObject>($"Levels/BLevel{GlobalControll.levelID}"), new Vector3(), new Quaternion()); break;
-            case 1: placementIndicator = Instantiate(Resources.Load<GameObject>($"Levels/GLevel{GlobalControll.levelID}"), new Vector3(), new Quaternion()); break;
-        }
+        _gameManager = GameManager.Instance;
 
         placementIndicator.SetActive(false);
 
@@ -35,13 +30,6 @@ public class ScenePlacementManager : MonoBehaviour
     {
         UpdatePlacementPose();
         UpdatePlacementIndicator();
-        
-        if (placementPoseValid && Input.touchCount > 0)
-        {
-            gameControll.enabled = true;
-
-            StartCoroutine(CallTutorial());
-        }
     }
 
     private void UpdatePlacementPose()
@@ -66,15 +54,5 @@ public class ScenePlacementManager : MonoBehaviour
         {
             placementIndicator.SetActive(false);
         }
-    }
-
-    private IEnumerator CallTutorial()
-    {
-        yield return new WaitForSeconds(.5f);
-
-        if (GlobalControll.runTutorial)
-            tutorial.SetActive(true);
-
-        Destroy(this);
     }
 }
