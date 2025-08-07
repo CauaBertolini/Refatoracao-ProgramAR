@@ -4,13 +4,11 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Enemy
-  - Barrel
-  - Button
-  - Chest
-  - Door
-  - Block
   - Character
+  - Path
+  - Fence
+  - Gate
+  - Key
   layers:
   - Default
   - TransparentFX

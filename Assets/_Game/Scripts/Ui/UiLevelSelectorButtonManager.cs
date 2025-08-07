@@ -5,7 +5,6 @@ public class UiLevelSelectorButtonManager : MonoBehaviour
 {
     [SerializeField]
     private int levelIndex;
-    [SerializeField]
     private string prefix = "Level";
 
     void Start()
