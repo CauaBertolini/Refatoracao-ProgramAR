@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    [SerializeField]
+    private GameObject characterSelected;
+
     private int levelType = 0;
     private int levelID { get; set; } = 0;
     private int higherUnlockedLevel { get; set; } = 0;
@@ -61,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     }
     
-    public void OnDestroy()
+    public void OnDestroy()                                                                                                                                                                                                       
     {
 
     }
