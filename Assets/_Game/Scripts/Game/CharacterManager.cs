@@ -2,15 +2,7 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    
-    private bool _isDead;
-    private bool _hasFinishedCommandExecution;
-    private int characterStepsCount;
-    private bool _haveKey;
-
-    [SerializeField]
-    private int _characterID;
-
+    public CharacterData characterData;
     private GameManager _gameManager;
     private CharacterCommandsExecutor _executor;
 
@@ -54,21 +46,21 @@ public class CharacterManager : MonoBehaviour
 
     public int getCharacterStepsCount()
     {
-        return characterStepsCount;
-    }
+        return 1;
+    }   
 
     public void countStep()
     {
-        characterStepsCount++;
+        
     }
 
     public void ResetStepsCount()
     {
-        characterStepsCount = 0;
+
     }
 
     public bool getHaveKey()
     {
-        return _haveKey;
+        return false;
     }
 }

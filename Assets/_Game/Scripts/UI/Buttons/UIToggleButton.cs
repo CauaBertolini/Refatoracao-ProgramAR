@@ -9,7 +9,7 @@ public class UiToggleButton : UIButtonHandler
 
     [SerializeField] private List<Animator> _otherAnimators = new List<Animator>();
 
-    protected void Awake()
+    protected new void Awake()
     {
         base.Awake();
         _buttonAnimator = this.GetComponent<Animator>();
