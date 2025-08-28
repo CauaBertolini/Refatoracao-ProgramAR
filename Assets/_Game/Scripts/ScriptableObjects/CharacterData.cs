@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Character", menuName = "Scriptable Objects/Character")]
-public class Character : ScriptableObject
+[CreateAssetMenu(fileName = "CharacterData", menuName = "Scriptable Objects/CharacterData")]
+public class CharacterData : ScriptableObject
 {
     [Header("Identificação")]
     public string characterName;

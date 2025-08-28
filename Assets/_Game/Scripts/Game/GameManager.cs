@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField]
-    private GameObject characterSelected;
+    private GameObject _characterSelected;
 
     private int levelType = 0;
     private int levelID { get; set; } = 0;
@@ -42,6 +42,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void selectCharacter(GameObject character)
+    {
+        _characterSelected = character;
     }
 
     public void HaldleOnGameStart()

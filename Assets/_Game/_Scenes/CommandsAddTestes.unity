@@ -822,7 +822,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -846,7 +846,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 503555445}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623636767}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: selectCharacter
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 855265017}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &503555445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1500,6 +1512,7 @@ GameObject:
   - component: {fileID: 855265020}
   - component: {fileID: 855265019}
   - component: {fileID: 855265018}
+  - component: {fileID: 855265022}
   m_Layer: 0
   m_Name: CharacterRoy
   m_TagString: Character
@@ -1592,12 +1605,25 @@ Transform:
   m_GameObject: {fileID: 855265017}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1346.03, y: 1333.68, z: -240.42021}
+  m_LocalPosition: {x: 1.888, y: -2.38, z: 9.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &855265022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855265017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 182b0b83cb2b8254ea40c7eb6437c451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterData: {fileID: 11400000, guid: 26a6b4fd12cf8924db0fe1b9ea787f38, type: 2}
 --- !u!1 &893177598
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,7 +1707,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 893177601}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623636767}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: selectCharacter
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1968383689}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &893177601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1940,7 +1978,7 @@ GameObject:
   - component: {fileID: 1124369540}
   - component: {fileID: 1124369539}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2029,7 +2067,7 @@ Transform:
   m_GameObject: {fileID: 1124369538}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1345.4396, y: 1332.06, z: -244.40724}
+  m_LocalPosition: {x: 0, y: -3.936, z: 16.879993}
   m_LocalScale: {x: 59.17278, y: 1, z: 46.74756}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3025,6 +3063,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582333933}
   m_CullTransparentMesh: 1
+--- !u!1 &1623636766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1623636768}
+  - component: {fileID: 1623636767}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1623636767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623636766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d627c202d4ddd1408de7910608a01d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterSelected: {fileID: 0}
+--- !u!4 &1623636768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623636766}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1178.4875, y: 623.8147, z: 45.209106}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1652496245
 GameObject:
   m_ObjectHideFlags: 0
@@ -3217,6 +3300,7 @@ GameObject:
   - component: {fileID: 1968383692}
   - component: {fileID: 1968383691}
   - component: {fileID: 1968383690}
+  - component: {fileID: 1968383694}
   m_Layer: 0
   m_Name: CharacterFurbot
   m_TagString: Character
@@ -3309,12 +3393,25 @@ Transform:
   m_GameObject: {fileID: 1968383689}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1344.7858, y: 1333.66, z: -240.42021}
+  m_LocalPosition: {x: -1.023, y: -2.3890002, z: 9.979999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1968383694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968383689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 182b0b83cb2b8254ea40c7eb6437c451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterData: {fileID: 11400000, guid: f10fa6b9713d1d544a811e4d2de00d2d, type: 2}
 --- !u!1 &2063449599
 GameObject:
   m_ObjectHideFlags: 0
@@ -3475,8 +3572,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1563252410}
   - {fileID: 649592154}
+  - {fileID: 1623636768}
   - {fileID: 306902236}
   - {fileID: 1243596825}
-  - {fileID: 1968383693}
   - {fileID: 855265021}
+  - {fileID: 1968383693}
   - {fileID: 1124369542}
