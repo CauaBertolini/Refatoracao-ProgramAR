@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    public CharacterData characterData;
+    public GameObject selectedCharacter;
     private GameManager _gameManager;
     private CharacterCommandsExecutor _executor;
 
@@ -22,6 +22,12 @@ public class CharacterManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public GameObject getCharacterSelected()
+    {
+        if (selectedCharacter != null) return selectedCharacter;
+        else return null;
     }
 
     public void GameManager_OnCallCommandListExecution()

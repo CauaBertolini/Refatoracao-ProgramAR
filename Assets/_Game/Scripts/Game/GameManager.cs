@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public event Action OnCallTutorial;
     public event Action OnCallCommandListsExecution;
 
+    public event Action OnCharacterChange; 
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -47,19 +49,21 @@ public class GameManager : MonoBehaviour
     public void selectCharacter(GameObject character)
     {
         _characterSelected = character;
+        Debug.Log(_characterSelected.characterData.characterName);
+        OnCharacterChange?.Invoke(this, EventArgs.Empty);
     }
 
-    public void HaldleOnGameStart()
+    public void HaldleOnGameStart(object sender, EventArgs e)
     {
         Debug.Log("Jogo começou.");
     }
 
-    public void HaldleOnGameEnd()
+    public void HaldleOnGameEnd(object sender, EventArgs e)
     {
         Debug.Log("Jogo encerrou.");
     }
 
-    public void HandleOnCallTutorial()
+    public void HandleOnCallTutorial(object sender, EventArgs e)
     {
         Debug.Log("Tutorial chamado");
     }
