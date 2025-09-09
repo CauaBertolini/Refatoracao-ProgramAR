@@ -18,9 +18,8 @@ public class UiToggleButton : UIButtonHandler
             _isToggled = _buttonAnimator.GetBool("isToggled");
 
         }
-    
     }
-   
+    
     protected override void ButtonClicked()
     {
         _isToggled = !_isToggled;

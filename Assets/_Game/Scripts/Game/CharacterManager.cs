@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class CharacterManager : MonoBehaviour
 {
-    public GameObject selectedCharacter;
     private GameManager _gameManager;
     private CharacterCommandsExecutor _executor;
+    [SerializeField]
+    private CharacterData _characterData;
 
     public CharacterCommandList CommandList {get; private set;} = new CharacterCommandList();
 
@@ -18,19 +21,8 @@ public class CharacterManager : MonoBehaviour
     {
         _gameManager.OnCallCommandListsExecution += GameManager_OnCallCommandListExecution;
     }
-
-    void Update()
-    {
-        
-    }
-
-    public GameObject getCharacterSelected()
-    {
-        if (selectedCharacter != null) return selectedCharacter;
-        else return null;
-    }
-
-    public void GameManager_OnCallCommandListExecution()
+    
+    public void GameManager_OnCallCommandListExecution(object o, EventArgs eventArgs)
     {
         ExecuteCommandList();
     }
@@ -52,21 +44,30 @@ public class CharacterManager : MonoBehaviour
 
     public int getCharacterStepsCount()
     {
-        return 1;
-    }   
+        return _characterData.characterStepsCount;
+    }
 
+    public string getCharacterName()
+    {
+        return _characterData.characterName;
+    }
     public void countStep()
     {
-        
+        _characterData.characterStepsCount++;
     }
 
     public void ResetStepsCount()
     {
-
+        _characterData.characterStepsCount = 0; 
     }
 
     public bool getHaveKey()
     {
-        return false;
+        return _characterData.hasKey;
+    }
+
+    public int getCharacterId()
+    {
+        return _characterData.characterID;
     }
 }
