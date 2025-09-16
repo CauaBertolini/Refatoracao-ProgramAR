@@ -1,33 +1,15 @@
 using UnityEngine;
-
-public class UiCharacterCommands : MonoBehaviour
+public class UiAddCommandButton : UIButtonHandler
 {
-    void Start()
+    [SerializeField]
+    private CommandType _commandType;
+    private GameManager _gameManager;
+    public void Awake()
     {
-        SelectPanel();
+        _gameManager = GameManager.Instance;
     }
-
-    public void AddBlock(GameObject block)
+    protected override void ButtonClicked()
     {
-
-    }
-
-    public void RemoveBlock(GameObject block)
-    {
-
-    }
-
-    public void Close()
-    {
-    }
-
-    public void SelectPanel(int panel = 0)
-    {
-
-    }
-
-    public void ButtonsOn()
-    {
-  
+        _gameManager.getSelectedCharacter()?.AddCommandToList(_commandType);
     }
 }

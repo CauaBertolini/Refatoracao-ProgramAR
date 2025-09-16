@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     public event Action<object, EventArgs> OnGameEnd;
     public event Action<object, EventArgs> OnCallTutorial;
     public event Action<object, EventArgs> OnCallCommandListsExecution;
-
     public event Action<object, EventArgs> OnCharacterChange; 
 
     void Awake()
@@ -89,6 +88,11 @@ public class GameManager : MonoBehaviour
     public void restartGame()
     {
 
+    }
+
+    public CharacterManager getSelectedCharacter()
+    {
+        return _selectedCharacter;
     }
     
     public void OnDestroy()                                                                                                                                                                                                       
