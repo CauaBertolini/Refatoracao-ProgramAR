@@ -16,13 +16,11 @@ public class GameManager : MonoBehaviour
     private int levelType = 0;
     private int levelID { get; set; } = 0;
     private int higherUnlockedLevel { get; set; } = 0;
-    
-
     public event Action<object, EventArgs> OnGameStart;
     public event Action<object, EventArgs> OnGameEnd;
     public event Action<object, EventArgs> OnCallTutorial;
     public event Action<object, EventArgs> OnCallCommandListsExecution;
-    public event Action<object, EventArgs> OnCharacterChange; 
+    public event Action<object, EventArgs> OnCharacterChange;
 
     void Awake()
     {
@@ -39,6 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _characters = FindObjectsOfType<CharacterManager>().ToList();
+        Debug.Log(_characters.Count);
         
         OnGameStart += HaldleOnGameStart;
         OnGameEnd += HaldleOnGameEnd;
@@ -59,6 +58,7 @@ public class GameManager : MonoBehaviour
             {
                 selectCharacter(character);
                 OnCharacterChange?.Invoke(this, EventArgs.Empty);
+                Debug.Log("Character ID: " + character.getCharacterId());
             }
         }
     }

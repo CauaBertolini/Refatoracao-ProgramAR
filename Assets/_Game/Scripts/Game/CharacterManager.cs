@@ -37,19 +37,9 @@ public class CharacterManager : MonoBehaviour
         CommandList.MainSequence.Add(command);
     }
 
-    public void RemoveCommandFromList(CommandType command)
+    public void RemoveCommandFromList(int commandIndex)
     {
-        CommandList.MainSequence.RemoveAt(CommandList.MainSequence.IndexOf(command));
-    }
-
-    public int getCharacterStepsCount()
-    {
-        return _characterData.characterStepsCount;
-    }
-
-    public string getCharacterName()
-    {
-        return _characterData.characterName;
+        CommandList.MainSequence.RemoveAt(commandIndex);
     }
     public void countStep()
     {
@@ -59,6 +49,15 @@ public class CharacterManager : MonoBehaviour
     public void ResetStepsCount()
     {
         _characterData.characterStepsCount = 0; 
+    }
+    public int getCharacterStepsCount()
+    {
+        return _characterData.characterStepsCount;
+    }
+
+    public string getCharacterName()
+    {
+        return _characterData.characterName;
     }
 
     public bool getHaveKey()
