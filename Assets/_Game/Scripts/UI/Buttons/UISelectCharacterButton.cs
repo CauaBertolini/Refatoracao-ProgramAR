@@ -5,7 +5,7 @@ public class UISelectCharacterButton : UIButtonHandler
 {
     private GameManager _gameManager;
     [SerializeField]
-    private int _characterId;
+    private int _uiCharacterId;
     
     private void Start()
     {
@@ -18,6 +18,6 @@ public class UISelectCharacterButton : UIButtonHandler
 
     public void selectCharacter()
     {
-        _gameManager.selectCharacterById(_characterId);
+        _gameManager.selectCharacterById(_uiCharacterId);
     }
 }

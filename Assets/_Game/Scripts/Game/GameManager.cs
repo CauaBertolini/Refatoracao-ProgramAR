@@ -52,6 +52,10 @@ public class GameManager : MonoBehaviour
 
     public void selectCharacterById(int id)
     {
+        // _selectedCharacter = _characters[id];
+        // OnCharacterChange?.Invoke(this, EventArgs.Empty);
+        // Debug.Log("Character ID: " + _selectedCharacter.getCharacterId());
+        
         foreach (var character in _characters)
         {
             if (character.getCharacterId() == id)

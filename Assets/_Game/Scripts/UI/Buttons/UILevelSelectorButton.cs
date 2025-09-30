@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UiLevelSelectorButtonManager : UIButtonHandler
+public class UiLevelSelectorButton : UIButtonHandler
 {
     [SerializeField]
     private int levelIndex;
@@ -10,6 +10,10 @@ public class UiLevelSelectorButtonManager : UIButtonHandler
     private TextMeshProUGUI levelText;
     private string prefix = "Level";
 
+    void Start()
+    {
+        levelText.text = levelIndex.ToString();
+    }
     protected override void ButtonClicked()
     {
         LoadLevel();
