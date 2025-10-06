@@ -13,11 +13,11 @@ public class UISelectCharacterButton : UIButtonHandler
     }
 
     protected override void ButtonClicked() {
-        selectCharacter();
+        SelectCharacter();
     }
 
-    public void selectCharacter()
+    public void SelectCharacter()
     {
-        _gameManager.selectCharacterById(_uiCharacterId);
+        _gameManager.SelectCharacterById(_uiCharacterId);
     }
 }

@@ -11,7 +11,7 @@ public class UiAddCommandButton : UIButtonHandler
     }
     protected override void ButtonClicked()
     {
-        _gameManager.getSelectedCharacter()?.AddCommandToList(_commandType);
+        _gameManager.GetSelectedCharacter()?.AddCommandToList(_commandType);
         
     }
 }

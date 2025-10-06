@@ -35,11 +35,15 @@ public class CharacterManager : MonoBehaviour
     public void AddCommandToList(CommandType command)
     {
         CommandList.MainSequence.Add(command);
+        _gameManager.NotifyCommandListChange();
+        
     }
 
     public void RemoveCommandFromList(int commandIndex)
     {
         CommandList.MainSequence.RemoveAt(commandIndex);
+        _gameManager.NotifyCommandListChange();
+        
     }
     public void countStep()
     {

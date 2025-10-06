@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public event Action<object, EventArgs> OnGameStart;
     public event Action<object, EventArgs> OnGameEnd;
     public event Action<object, EventArgs> OnCallTutorial;
+    public event Action<object, EventArgs> OnCommandListUpdate;
     public event Action<object, EventArgs> OnCallCommandListsExecution;
     public event Action<object, EventArgs> OnCharacterChange;
 
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         OnGameStart += HaldleOnGameStart;
         OnGameEnd += HaldleOnGameEnd;
         OnCallTutorial += HandleOnCallTutorial;
+        OnCommandListUpdate += HandleOnCommandListUpdate;
 
     }
 
@@ -50,7 +52,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void selectCharacterById(int id)
+    public void SelectCharacterById(int id)
     {
         // _selectedCharacter = _characters[id];
         // OnCharacterChange?.Invoke(this, EventArgs.Empty);
@@ -60,18 +62,23 @@ public class GameManager : MonoBehaviour
         {
             if (character.getCharacterId() == id)
             {
-                selectCharacter(character);
+                SelectCharacter(character);
                 OnCharacterChange?.Invoke(this, EventArgs.Empty);
                 Debug.Log("Character ID: " + character.getCharacterId());
             }
         }
     }
-    public void selectCharacter(CharacterManager character)
+    public void SelectCharacter(CharacterManager character)
     {
         _selectedCharacter = character;
         Debug.Log(_selectedCharacter.getCharacterName());
         OnCharacterChange?.Invoke(this, EventArgs.Empty);
         Debug.Log("Personagem selecionado");
+    }
+
+    public void NotifyCommandListChange()
+    {
+        OnCommandListUpdate?.Invoke(this, EventArgs.Empty);
     }
 
     public void HaldleOnGameStart(object sender, EventArgs e)
@@ -89,12 +96,17 @@ public class GameManager : MonoBehaviour
         Debug.Log("Tutorial chamado");
     }
 
-    public void restartGame()
+    public void HandleOnCommandListUpdate(object sender, EventArgs e)
+    {
+        
+    }
+
+    public void RestartGame()
     {
 
     }
 
-    public CharacterManager getSelectedCharacter()
+    public CharacterManager GetSelectedCharacter()
     {
         return _selectedCharacter;
     }

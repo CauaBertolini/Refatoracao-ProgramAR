@@ -9,7 +9,7 @@ public class UiManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _textMesh;
     
-    public event Action<object, EventArgs> OnCommandAddedToList;
+    
     void Awake()
     {
         _gameManager = GameManager.Instance;
@@ -18,10 +18,11 @@ public class UiManager : MonoBehaviour
     void Start()
     {
         _gameManager.OnCharacterChange += gameManager_OnCharacterChange;
-        OnCommandAddedToList += HandleOnCommandAddedToList;
+        _gameManager.OnCommandListUpdate += HandleOnCommandListUpdate;
+ 
     }
 
-    public void HandleOnCommandAddedToList(object sender, EventArgs eventArgs)
+    public void HandleOnCommandListUpdate(object sender, EventArgs eventArgs)
     {
         uiUptadeCommandListGrid();
     }
@@ -39,7 +40,7 @@ public class UiManager : MonoBehaviour
 
     public void uiUpdateCharacter()
     {
-        _selectedCharacter = _gameManager.getSelectedCharacter();
+        _selectedCharacter = _gameManager.GetSelectedCharacter();
     }
 
     public void uiChangeCharacterTitle()
