@@ -63,8 +63,9 @@ public class GameManager : MonoBehaviour
             if (character.getCharacterId() == id)
             {
                 SelectCharacter(character);
+                Debug.Log("Personagem encontrado no seletor por ID");
                 OnCharacterChange?.Invoke(this, EventArgs.Empty);
-                Debug.Log("Character ID: " + character.getCharacterId());
+                
             }
         }
     }

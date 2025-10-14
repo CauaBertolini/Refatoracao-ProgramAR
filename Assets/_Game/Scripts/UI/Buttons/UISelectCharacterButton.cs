@@ -18,6 +18,7 @@ public class UISelectCharacterButton : UIButtonHandler
 
     public void SelectCharacter()
     {
+        Debug.Log("Botão de personagem pressionado");
         _gameManager.SelectCharacterById(_uiCharacterId);
     }
 }

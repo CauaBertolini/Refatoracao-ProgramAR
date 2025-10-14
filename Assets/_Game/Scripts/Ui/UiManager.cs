@@ -12,38 +12,39 @@ public class UiManager : MonoBehaviour
     
     void Awake()
     {
-        _gameManager = GameManager.Instance;
+        
     }
 
     void Start()
     {
-        _gameManager.OnCharacterChange += gameManager_OnCharacterChange;
+        _gameManager = GameManager.Instance;
+        _gameManager.OnCharacterChange += UiManager_OnCharacterChange;
         _gameManager.OnCommandListUpdate += HandleOnCommandListUpdate;
  
     }
 
     public void HandleOnCommandListUpdate(object sender, EventArgs eventArgs)
     {
-        uiUptadeCommandListGrid();
+        UiUptadeCommandListGrid();
     }
 
-    public void gameManager_OnCharacterChange(object sender, EventArgs e)
+    public void UiManager_OnCharacterChange(object sender, EventArgs e)
     {
-        uiUpdateCharacter();
-        uiChangeCharacterTitle();
+        UiUpdateCharacter();
+        UiChangeCharacterTitle();
     }
 
-    public void uiUptadeCommandListGrid()
+    public void UiUptadeCommandListGrid()
     {
         
     }
 
-    public void uiUpdateCharacter()
+    public void UiUpdateCharacter()
     {
         _selectedCharacter = _gameManager.GetSelectedCharacter();
     }
 
-    public void uiChangeCharacterTitle()
+    public void UiChangeCharacterTitle()
     {
         String characterName = _selectedCharacter.getCharacterName();
         _textMesh.text = characterName;

@@ -34,6 +34,7 @@ public class CharacterManager : MonoBehaviour
     
     public void AddCommandToList(CommandType command)
     {
+        Debug.Log("Comando adicionado");
         CommandList.MainSequence.Add(command);
         _gameManager.NotifyCommandListChange();
         
