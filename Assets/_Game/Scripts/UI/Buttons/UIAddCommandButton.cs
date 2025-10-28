@@ -1,31 +1,37 @@
+using System;
 using UnityEngine;
 public class UiAddCommandButton : UIButtonHandler
 {
     [SerializeField]
     private CommandType _commandType;
     private GameManager _gameManager;
-    public void Awake()
+
+    void Start()
     {
+        Debug.Log("UiAddComandButton Verificando ----------------------------------------------");
         _gameManager = GameManager.Instance;
-        base.Awake();
+        Debug.Log($"[UiAddCommandButton] Start: GameManager.Instance = {_gameManager}");
     }
+
     protected override void ButtonClicked()
     {
 
         if (GameManager.Instance != null)
         {
             Debug.Log("Botão para adicionar comando pressionado");
-            return;
         }
 
-        var selectedCharacter = GameManager.Instance.GetSelectedCharacter();
-        if (selectedCharacter == null)
+
+        if (_gameManager.GetSelectedCharacter() != null)
         {
-            Debug.LogError("Nenhum personagem selecionado no GameManager!");
-            return;
+            Debug.Log("Comando adicionado");
+            _gameManager.GetSelectedCharacter().AddCommandToList(_commandType);
+        } 
+        else
+        {
+            Debug.Log("Por algum motivo não foi adicionado");
         }
         
-        _gameManager.GetSelectedCharacter()?.AddCommandToList(_commandType);
-        
+     
     }
 }
