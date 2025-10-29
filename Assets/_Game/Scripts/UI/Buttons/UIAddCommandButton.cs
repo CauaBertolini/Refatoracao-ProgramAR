@@ -5,32 +5,38 @@ public class UiAddCommandButton : UIButtonHandler
     [SerializeField]
     private CommandType _commandType;
     private GameManager _gameManager;
-
-    void Start()
+    
+    private GameManager GM
     {
-        Debug.Log("UiAddComandButton Verificando ----------------------------------------------");
-        _gameManager = GameManager.Instance;
-        Debug.Log($"[UiAddCommandButton] Start: GameManager.Instance = {_gameManager}");
+        get
+        {
+            if (_gameManager == null)
+            {
+                _gameManager = GameManager.Instance;
+                if (_gameManager == null)
+                    Debug.LogWarning("[UiAddCommandButton] GameManager ainda não inicializado!");
+            }
+            return _gameManager;
+        }
     }
 
     protected override void ButtonClicked()
     {
-
-        if (GameManager.Instance != null)
+        var gm = GM;
+        if (gm == null)
         {
-            Debug.Log("Botão para adicionar comando pressionado");
+            Debug.LogError("[UiAddCommandButton] GameManager continua nulo ao clicar!");
+            return;
         }
 
-
-        if (_gameManager.GetSelectedCharacter() != null)
+        var selected = gm.GetSelectedCharacter();
+        if (selected == null)
         {
-            Debug.Log("Comando adicionado");
-            _gameManager.GetSelectedCharacter().AddCommandToList(_commandType);
-        } 
-        else
-        {
-            Debug.Log("Por algum motivo não foi adicionado");
+            Debug.LogWarning("[UiAddCommandButton] Nenhum personagem selecionado!");
+            return;
         }
+        selected.AddCommandToList(_commandType);
+        Debug.Log($"[UiAddCommandButton] Comando {_commandType} adicionado ao personagem {selected.name}");
         
      
     }

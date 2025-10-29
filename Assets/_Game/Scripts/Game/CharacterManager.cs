@@ -6,6 +6,7 @@ public class CharacterManager : MonoBehaviour
 {
     private GameManager _gameManager;
     private CharacterCommandsExecutor _executor;
+    
     [SerializeField]
     private CharacterData _characterData;
 
@@ -14,11 +15,11 @@ public class CharacterManager : MonoBehaviour
     void Awake()
     {
         _executor =  GetComponent<CharacterCommandsExecutor>();
-        _gameManager = GameManager.Instance;
     }
 
     void Start()
     {
+        _gameManager = GameManager.Instance;
         _gameManager.OnCallCommandListsExecution += GameManager_OnCallCommandListExecution;
     }
     

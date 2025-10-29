@@ -6,11 +6,6 @@ public class CharacterCommandsExecutor : MonoBehaviour
 {
 
     private CharacterManager _characterManager;
-
-    void Start()
-    {
-        _characterManager = GetComponent<CharacterManager>();
-    }
     
     public void ExecutorExecuteCommandList(List<CommandType> commandList)
     {

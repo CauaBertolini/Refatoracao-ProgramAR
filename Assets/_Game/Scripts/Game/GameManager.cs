@@ -38,7 +38,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _characters = FindObjectsOfType<CharacterManager>().ToList();
-        Debug.Log(_characters.Count);
+        Debug.Log(_characters.Count + "Personagens encontrados: ");
+        foreach (var character in _characters)
+        {
+            Debug.Log(character.getCharacterId() + " : " + character.getCharacterName());
+        }
         
         OnGameStart += HaldleOnGameStart;
         OnGameEnd += HaldleOnGameEnd;
@@ -71,6 +75,8 @@ public class GameManager : MonoBehaviour
     }
     public void SelectCharacter(CharacterManager character)
     {
+        _selectedCharacter = new CharacterManager();
+        
         _selectedCharacter = character;
         Debug.Log(_selectedCharacter.getCharacterName());
         OnCharacterChange?.Invoke(this, EventArgs.Empty);
