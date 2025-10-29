@@ -6,7 +6,7 @@ public class UiAddCommandButton : UIButtonHandler
     private CommandType _commandType;
     private GameManager _gameManager;
     
-    private GameManager GM
+    private GameManager _tryGetGameManager
     {
         get
         {
@@ -22,21 +22,24 @@ public class UiAddCommandButton : UIButtonHandler
 
     protected override void ButtonClicked()
     {
-        var gm = GM;
-        if (gm == null)
+        var gameManager = _tryGetGameManager;
+        
+        if (gameManager == null)
         {
             Debug.LogError("[UiAddCommandButton] GameManager continua nulo ao clicar!");
             return;
         }
 
-        var selected = gm.GetSelectedCharacter();
-        if (selected == null)
+        var selectedCharacter = gameManager.GetSelectedCharacter();
+        
+        if (selectedCharacter == null)
         {
             Debug.LogWarning("[UiAddCommandButton] Nenhum personagem selecionado!");
             return;
         }
-        selected.AddCommandToList(_commandType);
-        Debug.Log($"[UiAddCommandButton] Comando {_commandType} adicionado ao personagem {selected.name}");
+        
+        selectedCharacter.AddCommandToList(_commandType);
+        Debug.Log($"[UiAddCommandButton] Comando {_commandType} adicionado ao personagem {selectedCharacter.name}");
         
      
     }
